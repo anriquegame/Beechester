@@ -2,6 +2,10 @@ body{
     margin: 0;
 }
 
+header{
+    background-color: #FFE500;
+}
+
 /* animation */
 .anim-logo {
 	-webkit-animation: rotate-scale-up 0.65s linear both;
