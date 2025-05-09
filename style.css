@@ -2,10 +2,30 @@
 
 body{
     margin: 0;
+    font-family: Arial, sans-serif;
 }
 
 header{
     background-color: #FFE500;
+    position: relative;
+}
+
+nav {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%); /* Moves nav up by 50% of its own height */
+    display: inline-block;
+    text-align: right;
+}
+
+nav a{
+    color: rgb(0, 0, 0);
+    font-size: 22px;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    margin-right: 40px;
 }
 
 /* animation */
