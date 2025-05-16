@@ -7,8 +7,12 @@ html, body {
 body{
     margin: 0;
     font-family: Arial, sans-serif;
+    height: 100vh;
 }
 
+#main {
+  height:100%;
+}
 header{
     background-color: #FFE500;
     position: relative;
@@ -39,6 +43,10 @@ nav a{
 	        animation: rotate-scale-up 0.65s linear both;
 }
 
+iframe{
+  width:25%;
+  height:50%;
+}
 
 @-webkit-keyframes rotate-scale-up {
   0% {
