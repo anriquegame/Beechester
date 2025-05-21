@@ -131,6 +131,50 @@ function startTour() {
                         // Changes the bubble text
                         document.getElementById("bubble-text").innerHTML = "Now see the transport area.";
                         break;
+                    default:
+                        // Inicia scroll suave até o topo
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+
+                        // Espera 600ms antes de executar o resto
+                        setTimeout(() => {
+                            const bubble = document.getElementById("bubble-div");
+                            if (bubble) {
+                                bubble.remove();
+                            }
+
+                            const divFather = document.querySelector(".floater");
+                            let pet, petRect;
+
+                            if (divFather) {
+                                pet = divFather.firstChild;
+                                petRect = divFather.getBoundingClientRect();
+
+                                pet.style.position = "fixed";
+                                pet.style.left = petRect.left + 'px';
+                                pet.style.top = petRect.top + 'px';
+
+                                document.getElementById("main").appendChild(pet);
+                                divFather.remove();
+                            }
+
+                            const placesLink = document.querySelector('a[href="places.html"]');
+                            const linkRect = placesLink.getBoundingClientRect();
+
+                            const deltaX = linkRect.left + linkRect.width / 2 - (petRect.left + petRect.width / 2);
+                            const deltaY = (linkRect.top + linkRect.height / 2 - (petRect.top + petRect.height / 2))-25;
+
+                            const computed = window.getComputedStyle(pet);
+                            const matrix = new DOMMatrixReadOnly(computed.transform);
+                            const currentAngle = Math.round(Math.atan2(matrix.b, matrix.a) * (180 / Math.PI));
+
+                            pet.style.transition = "transform 1s ease-in-out";
+                            void pet.offsetWidth;
+
+                            pet.style.transform = `translate(${deltaX}px, ${deltaY}px) rotate(0deg)`;
+                        }, 1200); // tempo aproximado do scroll suave
+
+                        break;
+
                 }
             });
         }
