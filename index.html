@@ -19,16 +19,35 @@
             </nav>
         </header>
         <section id="main">
-            <div id="introduction">
-                <h2>Welcome to Beechester, your quick guide to Manchester.</h2>
+            <div id="introduction" class="topicstext">
+                <h1>Welcome to Beechester, your quick guide to Manchester.</h1>
                 <p>Once called “Cottonopolis” as the world's first industrial city powered by 18th century mills and canals, Manchester now buzzes with culture, football and innovation. From top matches at Old Trafford (Manchester United) and the Etihad (Manchester City) to world class museums, live music venues and its UNESCO City of Literature status, there's something for every explorer.</p>
-                <button onclick="startTour()" id="tour-button">Get a Guided Tour On The Page!</button>
+                <button onclick="startTour()" id="tour-button">Get a Guided Tour on The Page!</button>
             </div>
-            <iframe src="https://www.youtube.com/embed/A8Bdyo8qdJg?mute=1" title="Manchester Uk 🇬🇧 Manchester City Centre Walking Tour 2024" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" id="iframevideo" allowfullscreen></iframe>
-            <div id="transport">
+            <div id="manchester-city" class="topics">
+                <div class="topicstext">
+                    <h2>The Heart of the City</h2>
+                    <p>Manchester's City Centre is a mix of history, style and personality. From the shops of Market Street to the indie vibe of the Northern Quarter, there's always something to see, eat or experience. Grab a coffee, explore local art, or just enjoy the buzz. Whether you're new in town or a local out for the day, the centre never feels the same twice.</p>
+                </div>
+                <div id="box-imgs">
+                    <img src="images\citymoreblue.jpg" alt="Manchester city image"/>
+                    <img src="images\citymoredark.jpg" alt="Manchester city image"/>
+                    <img src="images\citymoregray.webp" alt="Manchester city image"/>
+                    <img src="images\citymoreorange.jpg" alt="Manchester city image"/>
+                </div>
+                <div class="topicstext" id="videotopic">
+                    <p>The City's streets are full of life and stories waiting to be discovered. From historic corners to vibrant neighbourhoods, every step reveals something new about Manchester's unique character.</p>
+                </div>
+                <iframe src="https://www.youtube.com/embed/A8Bdyo8qdJg?mute=1" title="Manchester Uk 🇬🇧 Manchester City Centre Walking Tour 2024" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div id="transport" class="topics">
                 <img src="images/trams-in-manchester.jpg" alt="Tram in Manchester">
             </div>
         </section>
+        <div id="image-viewer">
+            <span id="close-viewer">&times;</span>
+            <img id="full-image" src="" alt="Expanded image">
+        </div>
         <footer>
             <h4>Contact information</h4>
             <p>email:supportinfo@gmail.com</p>

@@ -25,7 +25,7 @@ nav{
   position: absolute;
   top: 50%;
   right: 10px;
-  transform: translateY(-50%); /* Moves nav up by 50% of its own height */
+  transform: translateY(-50%);
   display: inline-block;
   text-align: right;
 }
@@ -48,14 +48,14 @@ nav a{
   align-items: center
 }
 
-#introduction{
+.topicstext{
   position: relative;
   text-align: center;
   margin: 15px 10px 10px 10px;
   width: 50vw;
 }
 
-#introduction *{
+.topicstext *{
   margin: 5px;
 }
 
@@ -105,7 +105,7 @@ nav a{
   width: 100%;
 }
 
-#go-to-transporte {
+#nextButton {
   margin-top: 8px;
   background: white;
   color: black;
@@ -116,15 +116,45 @@ nav a{
   cursor: pointer;
 }
 
-iframe{
-  position: relative;
-  width:55vw;
-  height:31vw;
+#manchester-city {
+  display: flex;
+  margin-top: 10px;
+  flex-direction: column;
+  align-items: center
+}
+
+#box-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 65vw;
+  margin-bottom: 10px;
+}
+
+#box-imgs img {
+  width: 27vw;
+  height: 15vw;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+#videotopic {
+  margin: 10px 0 0 0;
+}
+#videotopic p {
+  margin: 10px 0 0 0;
+}
+
+iframe {
+  width: 55vw;
+  height: 31vw;
   border-radius: 16px;
+  align-self: center;
 }
 
 #transport img {
-  width: 54vw;
+  width: 55vw;
   height: auto;
   border-radius: 16px;
   display: block;
@@ -150,6 +180,42 @@ footer p{
   margin: 5px 5px 0 5px;
 }
 
+/* zoom */
+
+#image-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1002;
+  flex-direction: column;
+}
+
+#image-viewer img {
+  width: 70%;
+  height: auto;
+  max-height: 85%;
+  box-shadow: 0 0 15px #000;
+  border-radius: 8px;
+}
+
+#close-viewer {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+
 /* animation */
 
 #anim-logo {
@@ -158,7 +224,7 @@ footer p{
 }
 
 .floater {
-  animation: float 2s ease-in-out infinite;
+  animation: float 2.75s ease-in-out infinite;
 }
 
 @-webkit-keyframes rotate-scale-up {
@@ -192,7 +258,7 @@ footer p{
 
 @keyframes float {
   0%   { transform: translateY(0); }
-  50%  { transform: translateY(-10px); }
+  50%  { transform: translateY(5.5px); }
   100% { transform: translateY(0); }
 }
 
@@ -202,11 +268,23 @@ footer p{
   #introduction{
     width: 65vw;
   }
+  #image-viewer img {
+    width: 90%;
+    height: auto;
+  }
 }
 
 @media only screen and (max-width: 850px) {
   #introduction{
     width: 70vw;
+  }
+  #box-imgs {
+    flex-direction: column;
+  }
+  #box-imgs img {
+    width: 55vw;
+    height: 31vw;
+    align-self: center;
   }
 }
 

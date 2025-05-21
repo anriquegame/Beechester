@@ -92,27 +92,71 @@ function startTour() {
             container.style.pointerEvents = 'none';
 
             document.getElementById("main").removeChild(pet);
-            container.appendChild(pet);
-            // container.className = 'floater';
+            // container.appendChild(pet);
+            const floater = document.createElement('div');
+            floater.appendChild(pet);
+            container.appendChild(floater);
+            floater.classList.add('floater');
+            pet.style.top = "0";
+            pet.style.left = "0";
+
 
             const bubble = document.createElement('div');
             bubble.id="bubble-div"
-            bubble.innerHTML = `<h3 id="bubble-text">Hello I will your guide!</h3> <button id="go-to-transport">Next</button>`;
+            bubble.innerHTML = `<h3 id="bubble-text">Hello I will be your guide!</h3> <button id="nextButton">Next</button>`;
+            let pageBubble = 0;
 
             container.appendChild(bubble);
             document.getElementById("main").appendChild(container);
 
             // adds event to the button
-            document.getElementById("go-to-transport").addEventListener("click", () => {
-                // Smooth scroll to ID "transporte"
-                document.getElementById("transport")?.scrollIntoView({ behavior: "smooth" });
-
-                // Changes the bubble text
-                document.getElementById("bubble-text").innerHTML = "Now see the transport area!";
-
+            document.getElementById("nextButton").addEventListener("click", () => {
+                ++pageBubble
+                switch (pageBubble) {
+                    case 1:
+                        // Smooth scroll to ID "manchester-city"
+                        document.getElementById("manchester-city")?.scrollIntoView({ behavior: "smooth" });
+                        // Changes the bubble text
+                        document.getElementById("bubble-text").innerHTML = "Lets see about Manchester City.";
+                        break;
+                    case 2:
+                        // Smooth scroll to ID "transporte"
+                        document.getElementById("videotopic")?.scrollIntoView({ behavior: "smooth" });
+                        // Changes the bubble text
+                        document.getElementById("bubble-text").innerHTML = "You can click on the video to watch a walking tour.";
+                        break;
+                    case 3:
+                        // Smooth scroll to ID "transporte"
+                        document.getElementById("transport")?.scrollIntoView({ behavior: "smooth" });
+                        // Changes the bubble text
+                        document.getElementById("bubble-text").innerHTML = "Now see the transport area.";
+                        break;
+                }
             });
         }
     }
 
     requestAnimationFrame(frame);
 }
+
+
+
+document.querySelectorAll('#main img').forEach(img => {
+    img.addEventListener('click', () => {
+    const viewer = document.getElementById('image-viewer');
+    const fullImage = document.getElementById('full-image');
+    fullImage.src = img.src;
+    viewer.style.display = 'flex';
+    });
+});
+
+document.getElementById('close-viewer').addEventListener('click', () => {
+    document.getElementById('image-viewer').style.display = 'none';
+});
+
+// Fecha ao clicar fora da imagem (opcional)
+document.getElementById('image-viewer').addEventListener('click', (e) => {
+    if (e.target.id === 'image-viewer') {
+    document.getElementById('image-viewer').style.display = 'none';
+    }
+});
