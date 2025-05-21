@@ -48,14 +48,23 @@ nav a{
   align-items: center
 }
 
-.topicstext{
+#main img {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#main img:hover {
+  transform: scale(1.03);
+}
+
+.topicstext {
   position: relative;
   text-align: center;
   margin: 15px 10px 10px 10px;
   width: 50vw;
 }
 
-.topicstext *{
+.topicstext * {
   margin: 5px;
 }
 
@@ -151,6 +160,10 @@ iframe {
   height: 31vw;
   border-radius: 16px;
   align-self: center;
+}
+
+iframe:hover {
+  transform: scale(1.03);
 }
 
 #transport img {
