@@ -132,46 +132,102 @@ function startTour() {
                         document.getElementById("bubble-text").innerHTML = "Now see the transport area.";
                         break;
                     default:
-                        // Inicia scroll suave até o topo
-                        window.scrollTo({ top: 0, behavior: "smooth" });
+                        // 1) Scroll animado ao topo com rAF
+                        (function() {
+                            const startY   = window.scrollY;
+                            const duration0 = 600;              // 600 ms para o scroll
+                            const start0   = performance.now();
 
-                        // Espera 600ms antes de executar o resto
-                        setTimeout(() => {
-                            const bubble = document.getElementById("bubble-div");
-                            if (bubble) {
-                                bubble.remove();
+                            function animateScroll(now0) {
+                                const t0 = Math.min((now0 - start0) / duration0, 1);
+                                // interpola de startY até 0
+                                window.scrollTo(0, startY * (1 - t0));
+
+                                if (t0 < 1) {
+                                    requestAnimationFrame(animateScroll);
+                                } else {
+                                    // quando terminar o scroll, chama a próxima
+                                    afterScroll();
+                                }
                             }
+                            requestAnimationFrame(animateScroll);
+                        })();
+
+                        // 2) tudo que hoje estava dentro do setTimeout(…,600)
+                        function afterScroll() {
+                            const bubble = document.getElementById("bubble-div");
+                            if (bubble) bubble.remove();
 
                             const divFather = document.querySelector(".floater");
                             let pet, petRect;
-
                             if (divFather) {
-                                pet = divFather.firstChild;
+                                pet     = divFather.firstChild;
                                 petRect = divFather.getBoundingClientRect();
 
                                 pet.style.position = "fixed";
-                                pet.style.left = petRect.left + 'px';
-                                pet.style.top = petRect.top + 'px';
-
+                                pet.style.left     = petRect.left + "px";
+                                pet.style.top      = petRect.top  + "px";
+                                pet.style.transform= "";
+                                pet.style.transition="";
                                 document.getElementById("main").appendChild(pet);
                                 divFather.remove();
                             }
 
+                            // calcula destino do link Places
                             const placesLink = document.querySelector('a[href="places.html"]');
-                            const linkRect = placesLink.getBoundingClientRect();
+                            const linkRect   = placesLink.getBoundingClientRect();
+                            const deltaX = linkRect.left + linkRect.width/2  - (petRect.left + petRect.width/2);
+                            const deltaY = linkRect.top  + linkRect.height/2 - (petRect.top  + petRect.height/2) - 25;
 
-                            const deltaX = linkRect.left + linkRect.width / 2 - (petRect.left + petRect.width / 2);
-                            const deltaY = (linkRect.top + linkRect.height / 2 - (petRect.top + petRect.height / 2))-25;
+                            // 3) animação do pet
+                            const start1    = performance.now();
+                            const duration1 = 1000;
+                            function animatePet(now1) {
+                                const t1 = Math.min((now1 - start1) / duration1, 1);
+                                pet.style.left      = petRect.left + deltaX * t1 + "px";
+                                pet.style.top       = petRect.top  + deltaY * t1 + "px";
+                                pet.style.transform = `rotate(${(1 - t1) * 360}deg)`; // ex: rotação decrescente
 
-                            const computed = window.getComputedStyle(pet);
-                            const matrix = new DOMMatrixReadOnly(computed.transform);
-                            const currentAngle = Math.round(Math.atan2(matrix.b, matrix.a) * (180 / Math.PI));
+                                if (t1 < 1) {
+                                    requestAnimationFrame(animatePet);
+                                } else {
+                                    // 4) quando pet acabar, chama overlay
+                                    startOverlay();
+                                }
+                            }
+                            requestAnimationFrame(animatePet);
+                        }
 
-                            pet.style.transition = "transform 1s ease-in-out";
-                            void pet.offsetWidth;
+                        // 4) fade‑in do overlay
+                        function startOverlay() {
+                            const main = document.getElementById("main");
+                            const overlay = document.createElement("div");
+                            Object.assign(overlay.style, {
+                                position:       "absolute",
+                                top:            0,
+                                left:           0,
+                                width:          "100%",
+                                height:         "100%",
+                                backgroundColor:"#fff",
+                                opacity:        0,
+                                pointerEvents:  "none",
+                                zIndex:         2000
+                            });
+                            main.appendChild(overlay);
 
-                            pet.style.transform = `translate(${deltaX}px, ${deltaY}px) rotate(0deg)`;
-                        }, 1200); // tempo aproximado do scroll suave
+                            const start2    = performance.now();
+                            const duration2 = 800;
+                            function animateOverlay(now2) {
+                                const t2 = Math.min((now2 - start2) / duration2, 1);
+                                overlay.style.opacity = t2;
+                                if (t2 < 1) {
+                                    requestAnimationFrame(animateOverlay);
+                                } else {
+                                    window.location.href = "places.html?guia=1";
+                                }
+                            }
+                            requestAnimationFrame(animateOverlay);
+                        }
 
                         break;
 

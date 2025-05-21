@@ -45,7 +45,8 @@ nav a{
   display: flex;
   flex-direction: column;
   height:100%;
-  align-items: center
+  align-items: center;
+  position: relative;
 }
 
 #main img {
