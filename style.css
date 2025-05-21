@@ -9,7 +9,6 @@ html, body{
 body{
   margin: 0;
   font-family: Arial, sans-serif;
-  height: 100vh;
 }
 
 /* header */
@@ -43,20 +42,93 @@ nav a{
 /* content */
 
 #main{
+  display: flex;
+  flex-direction: column;
   height:100%;
+  align-items: center
 }
 
 #introduction{
   position: relative;
-  left: 50%;
-  transform: translatex(-50%); /* Moves nav up by 50% of its own height */
   text-align: center;
-  margin: 10px;
+  margin: 15px 10px 10px 10px;
   width: 50vw;
 }
 
 #introduction *{
   margin: 5px;
+}
+
+#tour-button {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-size: 28px;
+  font-weight: bold;
+  border: none;
+  background-color: #FFE500;
+  border-radius: 16px;
+  padding: 7px 14px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#tour-button:hover {
+  transform: scale(1.1);
+}
+
+#tour-button.no-scale:hover { /* class to remove the scale from hover */
+  transform: none !important;
+}
+
+#bubble-div {
+  position: absolute;
+  bottom: 70%;
+  right: 30%;
+  transform: translateY(-10px);
+  padding: 8px 12px;
+  background: #FFE500;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  pointer-events: auto;
+  text-align: center;
+
+  /* limites e wrapping */
+  width: 15vw;
+  min-width: 100px;
+  white-space: normal;   /* permite múltiplas linhas */
+  overflow-x: hidden;    /* esconde qualquer sobra horizontal */
+}
+
+#bubble-text {
+  margin: 2px;
+  width: 100%;
+}
+
+#go-to-transporte {
+  margin-top: 8px;
+  background: white;
+  color: black;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+iframe{
+  position: relative;
+  width:55vw;
+  height:31vw;
+  border-radius: 16px;
+}
+
+#transport img {
+  width: 54vw;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+  margin: 20px auto;
 }
 
 /* footer */
@@ -80,14 +152,13 @@ footer p{
 
 /* animation */
 
-.anim-logo {
+#anim-logo {
 	-webkit-animation: rotate-scale-up 0.65s linear both;
 	animation: rotate-scale-up 0.65s linear both;
 }
 
-iframe{
-  width:25%;
-  height:50%;
+.floater {
+  animation: float 2s ease-in-out infinite;
 }
 
 @-webkit-keyframes rotate-scale-up {
@@ -119,7 +190,25 @@ iframe{
   }
 }
 
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
 /* media query */
+
+@media only screen and (max-width: 900px) {
+  #introduction{
+    width: 65vw;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  #introduction{
+    width: 70vw;
+  }
+}
 
 @media only screen and (max-width: 780px) {
   #introduction{
