@@ -65,7 +65,7 @@ function animatePath(pet, start, delta, amps, bias, duration) {
     requestAnimationFrame(frame);
 }
 
-function onAnimationEnd(pet) {
+function onAnimationEnd(pet, textsParam=texts, targetsParam=targets, linkPage="places") {
     const finalRect = pet.getBoundingClientRect();
     const container = document.createElement("div");
     Object.assign(container.style, {
@@ -89,7 +89,7 @@ function onAnimationEnd(pet) {
     container.appendChild(bubble);
     document.getElementById("main").appendChild(container);
 
-    setupBubbleNavigation(floater, bubble);
+    setupBubbleNavigation(floater, bubble, textsParam, targetsParam, linkPage);
 }
 
 const texts = [
@@ -117,41 +117,41 @@ const texts = [
 
 const targets = ["introduction", "manchester-city", "videotopic", "facts"];
 
-function setupBubbleNavigation(floater, bubble) {
+function setupBubbleNavigation(floater, bubble, textsParam, targetsParam, linkPage) {
     let section = 0;
     let dialogueIndex = 0;
 
     const nextBtn = bubble.querySelector("#nextButton");
     const textEl = bubble.querySelector("#bubble-text");
 
-    textEl.textContent = texts[0][0];
+    textEl.textContent = textsParam[0][0];
 
     nextBtn.addEventListener("click", () => {
         dialogueIndex++;
 
-        if (dialogueIndex < texts[section].length) {
-            textEl.textContent = texts[section][dialogueIndex];
+        if (dialogueIndex < textsParam[section].length) {
+            textEl.textContent = textsParam[section][dialogueIndex];
         } else {
             section++;
             dialogueIndex = 0;
 
-            if (section < targets.length) {
-                document.getElementById(targets[section])?.scrollIntoView({ behavior: "smooth" });
-                textEl.textContent = texts[section][0];
+            if (section < targetsParam.length) {
+                document.getElementById(targetsParam[section])?.scrollIntoView({ behavior: "smooth" });
+                textEl.textContent = textsParam[section][0];
             } else {
-                textEl.textContent = "Let's continue to the Places page!";
-                nextBtn.textContent = "Go to Places";
+                textEl.textContent = `Let's continue to the ${linkPage} page!`;
+                nextBtn.textContent = `Go to ${linkPage}`;
 
                 nextBtn.replaceWith(nextBtn.cloneNode(true));
                 const finalBtn = bubble.querySelector("#nextButton");
-                finalBtn.addEventListener("click", () => endTour(floater, textEl));
+                finalBtn.addEventListener("click", () => endTour(floater, linkPage));
             }
         }
     });
 }
 
 
-function endTour(floater) {
+function endTour(floater, linkPage) {
     // Scroll back to top smoothly
     const startY = window.scrollY;
     const duration0 = 600;
@@ -162,7 +162,7 @@ function endTour(floater) {
         window.scrollTo(0, startY * (1 - t0));
         if (t0 < 1) requestAnimationFrame(animateScroll);
         else {
-            const link = document.querySelector('a[href="places.html"]');
+            const link = document.getElementById(linkPage)
             continueEnd(floater, link);
         }
     })(performance.now());
@@ -196,11 +196,11 @@ function continueEnd(floater, link) {
         pet.style.top = `${petRect.top + deltaY * t1}px`;
         pet.style.transform = `rotate(${(1 - t1) * 360}deg)`;
         if (t1 < 1) requestAnimationFrame(animatePet);
-        else startOverlay(pet);
+        else startOverlay(pet, link);
     })(performance.now());
 }
 
-function startOverlay(pet) {
+function startOverlay(pet, link) {
     const main = document.getElementById("main");
     const overlay = document.createElement("div");
     Object.assign(overlay.style, {
@@ -225,8 +225,19 @@ function startOverlay(pet) {
         if (t2 < 1) requestAnimationFrame(animateOverlay);
         else {
             const rect = pet.getBoundingClientRect();
-            sessionStorage.setItem("beePlaces", JSON.stringify({ left: Math.round(rect.left * 100), top: Math.round(rect.top * 100) }));
-            window.location.href = "places.html?guide=1";
+            sessionStorage.setItem("beePlaces", JSON.stringify({ left: Math.round(rect.left * 100), top: Math.round(rect.top * 100) }))
+            if (link.id == "places"){
+                window.location.href = "places.html?guide=1";
+            }
+            if (link.id == "events"){
+                window.location.href = "events.html?guide=2";
+            }
+            if (link.id == "info"){
+                window.location.href = "info.html?guide=3";
+            }
+            if (link.id == "contact"){
+                window.location.href = "contact.html?guide=4";
+            }
         }
     })(performance.now());
 }

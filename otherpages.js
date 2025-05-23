@@ -48,27 +48,87 @@ window.addEventListener('DOMContentLoaded', async () => {
         const deltaY = end.y - y0;
     
         await animatePetbee(pet, {
-            duration: 1200,
+            duration: 600,
             transform: `translate(${deltaX}px, ${deltaY}px) rotate(380deg)`
         });
 
-        const finalRect = pet.getBoundingClientRect();
         const finalRotation = 'rotate(380deg)';
+
+        pet.style.removeProperty('translate');
 
         Object.assign(pet.style, {
         transform: finalRotation
         });
 
-        pet.style.removeProperty('transition');
-
-        onAnimationEnd(pet)
-
-        Object.assign(pet.style, {
-            left:     `0px`,
-            top:      `0px`,
-        });
+        onAnimationEnd(pet, texts2, targets2, "events")
     } else {
       blank.remove();
     }
   });
+
+const texts2 = [
+// 0 – Introduction
+[
+    "Let's continue the tour, now for the Manchester's best Places of Interest.",
+    "Scroll down to explore parks, neighbourhoods, landmarks and more."
+],
+// 1 – Heaton Park
+[
+    "First up: Heaton Park – one of Europe's largest municipal parks.",
+    "Enjoy landscaped gardens, a historic hall, and even tram rides."
+],
+// 2 – Northern Quarter
+[
+    "Next, wander the Northern Quarter's creative streets.",
+    "Spot colourful street art, indie shops and cosy cafés around every corner."
+],
+// 3 – Chinatown
+[
+    "Now let's head to Chinatown for authentic flavours.",
+    "Sample delicious street food and soak up the festival lanterns."
+],
+// 4 – Albert Square
+[
+    "Over at Albert Square, admire Victorian architecture.",
+    "Don't miss the Christmas tree lighting if you're here in winter!"
+],
+// 5 – The Lowry
+[
+    "Across the water at Salford Quays sits The Lowry.",
+    "Explore contemporary art galleries and theatre performances."
+],
+// 6 – Stadiums
+[
+    "Calling all football fans – check out Old Trafford.",
+    "Book a stadium tour to dive into Manchester's sporting history."
+],
+// 7 – Parks roundup
+[
+    "Manchester has more than just Heaton Park.",
+    "There's a green space for every mood."
+],
+// 8 – Hotels
+[
+    "Ready to stay the night? Explore our hotel map.",
+    "Find everything from boutique B&Bs to luxury riverside hotels."
+],
+// 9 – Interactive Map
+[
+    "Finally, here's your all-in-one interactive Manchester map.",
+    "Click any marker to jump straight to that place's details above."
+]
+];
+
+const targets2 = [
+"places-intro",
+"heaton-map",
+"northern-map",
+"chinatown-map",
+"albert-map",
+"lowry-map",
+"stadiums-map",
+"parks-map",
+"hotel-map",
+"city-map"
+];
   
