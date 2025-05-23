@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
   
     function animatePetbee(pet, options = {}) {
-        const { duration = 1200, ease = 'ease-in-out', transform } = options;
+        const { duration = 600, ease = 'ease-in-out', transform } = options;
         return new Promise(resolve => {
             pet.style.transition = `transform ${duration}ms ${ease}`;
             pet.style.transform = transform;
@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         blank.style.opacity = 1;
     
         await wait(750);
-        await fadeOut(blank, 2000);
+        await fadeOut(blank, 1500);
         blank.remove();
     
         const pet = document.getElementById("petbee");

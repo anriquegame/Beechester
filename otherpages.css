@@ -29,6 +29,8 @@
     width: 20vw;
     height: 10vw;
     border-radius: 12px;
+    object-fit: cover;
+    object-position: center;
 }
 
 #northern img {

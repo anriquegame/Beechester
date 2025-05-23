@@ -55,7 +55,6 @@ nav a{
 
 #main img {
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
 #main img:hover {
