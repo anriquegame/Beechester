@@ -4,16 +4,8 @@
     width: 50px;
     height: 50px;
     z-index: 1004;
-    animation: none !important;
-    -webkit-animation: none !important;
+    transition: none;
 }
-
-#pet:hover {
-    transform: none !important;
-    animation: none !important;
-    -webkit-animation: none !important;
-}
-
 #blank {
     position: absolute;
     width: 100%;
@@ -38,3 +30,26 @@
     height: 10vw;
     border-radius: 12px;
 }
+
+#northern img {
+    height: 15vw;
+}
+
+@media only screen and (max-width: 850px) {
+    .gallery {
+        flex-direction: column;
+    }
+    .gallery img {
+        width: 80vw;
+        height: 40vw;
+        border-radius: 12px;
+    }
+    #northern img {
+        height: 60vw;
+    }
+    #image-viewer img {
+      width: 90%;
+      height: auto;
+    }
+  }
+    
