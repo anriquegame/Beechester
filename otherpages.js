@@ -2,11 +2,11 @@ window.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const guide = urlParams.get('guide');
     const blank = document.getElementById('blank');
-  
+
     if (!blank) return;
-  
+
     const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
-  
+
     function fadeOut(element, duration) {
         return new Promise(resolve => {
             const start = performance.now();
@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             requestAnimationFrame(step);
         });
     }
-  
+
     function animatePetbee(pet, options = {}) {
         const { duration = 600, ease = 'ease-in-out', transform } = options;
         return new Promise(resolve => {
@@ -31,22 +31,22 @@ window.addEventListener('DOMContentLoaded', async () => {
             pet.addEventListener('transitionend', () => resolve(), { once: true });
         });
     }
-  
+
     if (guide === '1') {
         document.getElementById("anim-logo").src = "images/lightgraylogobee.png";
         document.getElementById("anim-logo").id = "grayBee";
         blank.style.opacity = 1;
-    
+
         await wait(750);
         await fadeOut(blank, 1500);
         blank.remove();
-    
+
         const pet = document.getElementById("petbee");
         const { left: x0, top: y0, width: w, height: h } = pet.getBoundingClientRect();
         const end = { x: window.innerWidth * 0.95 - w / 2, y: window.innerHeight * 0.5  - h / 2};
         const deltaX = end.x - x0;
         const deltaY = end.y - y0;
-    
+
         await animatePetbee(pet, {
             duration: 600,
             transform: `translate(${deltaX}px, ${deltaY}px) rotate(380deg)`
@@ -62,9 +62,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         onAnimationEnd(pet, texts2, targets2, "events")
     } else {
-      blank.remove();
+        blank.remove();
     }
-  });
+});
 
 const texts2 = [
 // 0 – Introduction
@@ -131,4 +131,3 @@ const targets2 = [
 "hotel-map",
 "city-map"
 ];
-  

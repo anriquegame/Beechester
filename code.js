@@ -156,16 +156,11 @@ function endTour(floater, linkPage) {
     const startY = window.scrollY;
     const duration0 = 600;
     const t0Start = performance.now();
-
-    (function animateScroll(now0) {
-        const t0 = Math.min((now0 - t0Start) / duration0, 1);
-        window.scrollTo(0, startY * (1 - t0));
-        if (t0 < 1) requestAnimationFrame(animateScroll);
-        else {
-            const link = document.getElementById(linkPage)
-            continueEnd(floater, link);
-        }
-    })(performance.now());
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // animação nativa
+    setTimeout(() => {
+        const link = document.getElementById(linkPage);
+        continueEnd(floater, link);
+    }, 1200)
 }
 
 function continueEnd(floater, link) {
