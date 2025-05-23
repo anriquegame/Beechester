@@ -1,0 +1,40 @@
+#petbee {
+    cursor: default !important;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    z-index: 1004;
+    animation: none !important;
+    -webkit-animation: none !important;
+}
+
+#pet:hover {
+    transform: none !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+}
+
+#blank {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1003;
+}
+.topics {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+.gallery {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.gallery img {
+    width: 20vw;
+    height: 10vw;
+    border-radius: 12px;
+}

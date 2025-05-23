@@ -63,6 +63,9 @@ nav a{
   text-align: center;
   margin: 15px 10px 10px 10px;
   width: 50vw;
+  background-color: rgb(247, 247, 247);
+  border-radius: 16px;
+  padding: 10px 0 10px 0;
 }
 
 .topicstext * {
@@ -149,13 +152,6 @@ nav a{
   border-radius: 12px;
 }
 
-#videotopic {
-  margin: 10px 0 0 0;
-}
-#videotopic p {
-  margin: 10px 0 0 0;
-}
-
 iframe {
   width: 55vw;
   height: 31vw;
@@ -167,12 +163,16 @@ iframe:hover {
   transform: scale(1.03);
 }
 
-#transport img {
-  width: 55vw;
-  height: auto;
-  border-radius: 16px;
-  display: block;
-  margin: 20px auto;
+#facts div{
+  text-align: left !important;
+}
+
+#facts div h2{
+  text-align: center;
+}
+
+ol li::marker {
+  font-weight: bold;
 }
 
 /* footer */
@@ -206,7 +206,7 @@ footer p{
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 1002;
+  z-index: 1006;
   flex-direction: column;
 }
 

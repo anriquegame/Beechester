@@ -2,35 +2,193 @@
 <html lang="en-GB">
     <head>
         <meta charset="utf-8">
-        <title>Beechester</title>
-        <link rel="icon" href="images\logobee.png">
+        <title>Beechester - Places</title>
+        <link rel="icon" href="images/logobee.png">
+        <script> //speed loader, need to the petbee not blink when loading the page
+            const urlParams = new URLSearchParams(window.location.search);
+            const guide = urlParams.get('guide');
+            if (guide === '1') {
+                (function(){
+                    const raw = sessionStorage.getItem('beePlaces');
+                    if (!raw) return;
+                    try {
+                        const { left, top } = JSON.parse(raw);
+                        const style = document.createElement('style');
+                        style.textContent = `
+                        #petbee {
+                            position: fixed !important;
+                            left:   ${left/100}px !important;
+                            top:    ${top/100}px !important;
+                            display: block !important;
+                        }
+                        `;
+                        console.log(left)
+                        document.head.appendChild(style);
+                    } catch(e) {
+                        console.warn('beePlaces inválido', e);
+                    }
+                })();
+            }
+        </script>
+        <script src="otherpages.js"></script>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="otherpages.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <header>
-            <a href="index.html"><img src="images\logobee.png" alt="Logo image of bee" width="50px" id="anim-logo"/></a>
+            <a href="index.html"><img src="images/logobee.png" alt="Logo image of bee" width="50px" id="anim-logo"/></a>
             <nav>
                 <a href="index.html">Home</a>
-                <a href="places.html">Places</a>
+                <a href="places.html" class="active">Places</a>
                 <a href="events.html">Events</a>
                 <a href="info.html">Info</a>
                 <a href="contact.html">Contact</a>
             </nav>
         </header>
+
         <section id="main">
-            <h3>parks in manchester</h3>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d37986.493459968886!2d-2.2735542635186685!3d53.4835452407269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1spark!5e0!3m2!1sen!2suk!4v1747398929037!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <iframe src="https://anriquegame.github.io/assignmentcollege/" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <img src="images/logobee.png" id="petbee" style="display: none;"/>
+            <div id="blank"></div>
+
+            <div id="places-intro" class="topicstext">
+                <h1>Places of Interest in Manchester</h1>
+                <p>Discover some of Manchester's most captivating spots, from lush parks and historic landmarks to vibrant neighborhoods and hidden gems. Explore each place with our interactive map and photo gallery below.</p>
+            </div>
+
+            <!-- Place 1: Heaton Park -->
+            <div class="topics">
+                <div class="topicstext">
+                    <h2>Heaton Park</h2>
+                    <p>One of the largest municipal parks in Europe, Heaton Park features beautiful landscapes, an animal centre, tram tours, and a historic hall.</p>
+                </div>
+                <div class="gallery">
+                    <img src="images/heaton1.jpg" alt="Heaton Park landscape"/>
+                    <img src="images/heaton2.jpg" alt="Heaton Park tram"/>
+                    <img src="images/heaton3.jpg" alt="Heaton Hall"/>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d37935.92313417048!2d-2.26!3d53.540000000000006!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bb006264fc2c9%3A0x2581bc3b9853b122!2sHeaton%20Park!5e0!3m2!1spt-BR!2sus!4v1747957228731!5m2!1spt-BR!2sus" width="600" height="450" style="border:0;" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+            <!-- Place 2: Northern Quarter -->
+            <div class="topics">
+                <div class="topicstext">
+                    <h2>Northern Quarter</h2>
+                    <p>Known for its creative vibe, street art, independent shops, and buzzing nightlife. Perfect for urban exploration and local culture.</p>
+                </div>
+                <div class="gallery">
+                    <img src="images/nq1.jpg" alt="Northern Quarter street art"/>
+                    <img src="images/nq2.jpg" alt="Independent shops"/>
+                    <img src="images/nq3.jpg" alt="Cafe scene"/>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23800.987654321!2d-2.2400000!3d53.4860000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bb0c0a0a0a0a0%3A0x123456789abcdef!2sNorthern+Quarter!5e0!3m2!1sen!2suk!4v1234567890124" width="600" height="450" style="border:0;" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <!-- Place 3: Chinatown -->
+            <div class="topics">
+                <div class="topicstext">
+                    <h2>Chinatown</h2>
+                    <p>Food, festivals, and lanterns bring Manchester’s vibrant Chinatown to life, offering authentic cuisines and cultural celebrations.</p>
+                </div>
+                <div class="gallery">
+                    <img src="images/chinatown1.jpg" alt="Chinatown food stalls"/>
+                    <img src="images/chinatown2.jpg" alt="Lantern festival"/>
+                    <img src="images/chinatown3.jpg" alt="Chinatown street scene"/>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23800.123456789!2d-2.2390000!3d53.4810000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bb0c0a0b0b0b0%3A0xabcdefabcdefabcd!2sManchester+Chinatown!5e0!3m2!1sen!2suk!4v1234567890125" width="600" height="450" style="border:0;" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <!-- Place 4: Albert Square -->
+            <div class="topics">
+                <div class="topicstext">
+                    <h2>Albert Square</h2>
+                    <p>Home to Victorian architecture and buzzing events, Albert Square hosts markets, concerts, and the famous Christmas tree each December.</p>
+                </div>
+                <div class="gallery">
+                    <img src="images/albertsquare1.jpg" alt="Albert Square architecture"/>
+                    <img src="images/albertsquare2.jpg" alt="Christmas tree lighting"/>
+                    <img src="images/albertsquare3.jpg" alt="Square event"/>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23850.987654321!2d-2.2410000!3d53.4790000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bb0c0ac0ac0ac%3A0xabcdefabcdef1234!2sAlbert+Square!5e0!3m2!1sen!2suk!4v1234567890126" width="600" height="450" style="border:0;" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <!-- Place 5: The Lowry -->
+            <div class="topics">
+                <div class="topicstext">
+                    <h2>The Lowry</h2>
+                    <p>Located in Salford Quays, The Lowry showcases contemporary art, theatre performances, and galleries overlooking the waterfront.</p>
+                </div>
+                <div class="gallery">
+                    <img src="images/lowry1.jpg" alt="The Lowry exterior"/>
+                    <img src="images/lowry2.jpg" alt="Art exhibition inside"/>
+                    <img src="images/lowry3.jpg" alt="Quayside view"/>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23880.123456789!2d-2.3570000!3d53.4640000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bb0c1d1d1d1d1%3A0xabcdefabcdef5678!2sThe+Lowry!5e0!3m2!1sen!2suk!4v1234567890127" width="600" height="450" style="border:0;" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <!-- Place 6: Stadium -->
+            <div class="topics">
+                <div class="topicstext">
+                    <h2>Stadiums</h2>
+                    <p>Old Trafford are home to football legends — catch matches or take stadium tours immersed in sporting history.</p>
+                </div>
+                <div class="gallery">
+                    <img src="images/etihad.jpg" alt="Etihad Stadium exterior"/>
+                    <img src="images/oldtrafford.jpg" alt="Old Trafford pitch"/>
+                    <img src="images/tour.jpg" alt="Stadium tour group"/>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2375.3020314005976!2d-2.293920387809372!3d53.463062065868776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bae72e7e47f69%3A0x6c930e96df4455fe!2sEst%C3%A1dio%20Old%20Trafford!5e0!3m2!1spt-BR!2suk!4v1747956486140!5m2!1spt-BR!2suk" width="600" height="450" style="border:0;" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+            <!-- Parks Map -->
+            <div id="parks-map" class="topics">
+                <div class="topicstext">
+                    <h2>Parks in Manchester</h2>
+                    <p>Wander through Manchester’s diverse parks, from the scenic Heaton Park to the tranquil Fletcher Moss — ideal for picnics and family days out.</p>
+                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d37986.493459968886!2d-2.2735542635186685!3d53.4835452407269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1spark!5e0!3m2!1sen!2suk!4v1747398929037!5m2!1sen!2suk" width="600" height="450" style="border:0;" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <!-- Hotels Map -->
+            <div id="hotel-map" class="topics">
+                <div class="topicstext">
+                    <h2>Hotels</h2>
+                    <p>Discover a range of accommodations near Manchester’s must-see sights, from charming boutique B&Bs in the city centre to upscale hotels in Salford Quays.</p>
+                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d18994.06329510638!2d-2.256848200700422!3d53.48172139094421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1shotel%20manchester!5e0!3m2!1spt-BR!2suk!4v1747953902291!5m2!1spt-BR!2suk" width="600" height="450" style="border:0;" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <!-- Overall interactive map of Manchester -->
+            <div id="city-map" class="topics">
+                <div class="topicstext">
+                    <h2>Interactive Manchester Map</h2>
+                    <p>Explore all highlighted places of interest at a glance.</p>
+                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d18994.06329510638!2d-2.256848200700422!3d53.48172139094421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1shotel%20manchester!5e0!3m2!1spt-BR!2suk!4v1747953902291!5m2!1spt-BR!2suk" width="600" height="450" style="border:0;" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </section>
+
         <div id="image-viewer">
             <span id="close-viewer">&times;</span>
             <img id="full-image" src="" alt="Expanded image">
         </div>
+
         <footer>
             <h4>Contact information</h4>
-            <p>email:supportinfo@gmail.com</p>
-            <p>phone:+44 7472 345678</p>
+            <p>email: supportinfo@gmail.com</p>
+            <p>phone: +44 7472 345678</p>
         </footer>
         <script src="code.js"></script>
     </body>
