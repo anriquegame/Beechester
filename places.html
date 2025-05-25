@@ -7,7 +7,7 @@
         <script> //speed loader, need to the petbee not blink when loading the page
             const urlParams = new URLSearchParams(window.location.search);
             const guide = urlParams.get('guide');
-            if (guide === '1') {
+            if (guide) {
                 (function(){
                     const raw = sessionStorage.getItem('beePlaces');
                     if (!raw) return;
@@ -25,7 +25,7 @@
                         console.log(left)
                         document.head.appendChild(style);
                     } catch(e) {
-                        console.warn('beePlaces inválido', e);
+                        console.warn('restart the tour', e);
                     }
                 })();
             }

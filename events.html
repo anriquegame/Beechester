@@ -1,101 +1,144 @@
 <!DOCTYPE html>
 <html lang="en-GB">
-  <head>
-    <meta charset="utf-8">
-    <title>Beechester Events</title>
-    <link rel="icon" href="images/logobee.png">
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-    <header>
-      <a href="index.html"><img src="images/logobee.png" alt="Logo image of bee" width="50px" id="anim-logo"/></a>
-      <nav>
-        <a href="index.html" id="home">Home</a>
-        <a href="places.html" id="places">Places</a>
-        <a href="events.html" id="events">Events</a>
-        <a href="info.html" id="info">Info</a>
-        <a href="contact.html" id="contact">Contact</a>
-      </nav>
-    </header>
+    <head>
+        <meta charset="utf-8">
+        <title>Beechester - Events</title>
+        <link rel="icon" href="images/logobee.png">
+        <script> //speed loader, need to the petbee not blink when loading the page
+            const urlParams = new URLSearchParams(window.location.search);
+            const guide = urlParams.get('guide');
+            if (guide) {
+                (function(){
+                    const raw = sessionStorage.getItem('beeEvents');
+                    if (!raw) return;
+                    try {
+                        const { left, top } = JSON.parse(raw);
+                        const style = document.createElement('style');
+                        style.textContent = `
+                        #petbee {
+                            position: fixed !important;
+                            left:   ${left/100}px;
+                            top:    ${top/100}px;
+                            display: block !important;
+                        }
+                        `;
+                        console.log(left)
+                        document.head.appendChild(style);
+                    } catch(e) {
+                        console.warn('restart the tour', e);
+                    }
+                })();
+            }
+        </script>
+        <script src="otherpages.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="otherpages.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <header>
+            <a href="index.html"><img src="images/logobee.png" alt="Logo image of bee" width="50px" id="anim-logo"/></a>
+            <nav>
+                <a href="index.html" id="home">Home</a>
+                <a href="places.html" id="places">Places</a>
+                <a href="events.html" id="events">Events</a>
+                <a href="info.html" id="info">Info</a>
+                <a href="contact.html" id="contact">Contact</a>
+            </nav>
+        </header>
 
-    <section id="main">
-      <!-- Introduction to Events -->
-      <div id="introduction" class="topicstext">
-        <h1>Upcoming Cultural Events &amp; Festivals</h1>
-        <p>Discover the very best of Beechester's vibrant cultural scene. From music and art to family-friendly festivals and seasonal markets, find out what's on around town and plan your next adventure.</p>
-      </div>
+        <section id="main">
+            <img src="images/logobee.png" id="petbee" style="display: none;"/>
+            <div id="blank"></div>
+            <!-- Introduction -->
+            <div id="introduction" class="topicstext">
+                <h1>Upcoming Cultural Events &amp; Festivals</h1>
+                <p>Discover the very best of Beechester's vibrant cultural scene. From music and art to family-friendly festivals and seasonal markets, find out what's on around town and plan your next adventure.</p>
+            </div>
 
-      <!-- Event 1 -->
-      <div id="event-1" class="topics">
-        <div class="topicstext">
-          <h2>Manchester International Festival</h2>
-          <p><strong>Date:</strong> 10 July – 21 July 2025</p>
-          <p><strong>Venue:</strong> Various Venues across Manchester</p>
-          <p>The world’s first festival of original work, showcasing unique performances in theatre, music, art and more.</p>
+            <!-- Events Container -->
+            <div id="events-list">
+                <!-- Event Template -->
+                <article class="topics" data-event id="mif-event">
+                    <div class="topicstext">
+                        <h2>Manchester International Festival</h2>
+                        <p><strong>Date:</strong> <time datetime="2025-07-10">3 July</time> – <time datetime="2025-07-21">20 July</time></p>
+                        <p><strong>Venue:</strong> Various Venues across Manchester</p>
+                        <p>The world’s first festival of original work, showcasing unique performances in theatre, music, art and more.</p>
+                    </div>
+                    <div class="gallery">
+                        <img src="images/mif1.jpg" alt="Crowd at MIF" />
+                        <img src="images/mif2.jpg" alt="Performance at MIF" />
+                    </div>
+                </article>
+
+                <article class="topics" data-event id="parklife-event">
+                    <div class="topicstext">
+                        <h2>Parklife Festival</h2>
+                        <p><strong>Date:</strong> <time datetime="2025-06-14">14 June</time> – <time datetime="2025-06-15">15 June</time></p>
+                        <p><strong>Venue:</strong> Heaton Park</p>
+                        <p>A weekend of live music and street food, featuring top DJs and bands in a beautiful park setting.</Sp>
+                    </div>
+                    <div class="gallery">
+                        <img src="images/parklife1.jpg" alt="Stage at Parklife" />
+                        <img src="images/parklife2.jpg" alt="Stage at Parklife" />
+                    </div>
+                </article>
+
+                <article class="topics" data-event id="jazzfest-event">
+                    <div class="topicstext">
+                        <h2>Manchester Jazz Festival</h2>
+                        <p><strong>Date:</strong> <time datetime="2025-05-16">16 May</time> – <time datetime="2025-05-25">25 May</time></p>
+                        <p><strong>Venue:</strong> Various Venues including Band on the Wall &amp; RNCM</p>
+                        <p>A celebration of jazz in all its forms, featuring local and international talent across intimate clubs and grand halls.</p>
+                    </div>
+                    <div class="gallery">
+                        <img src="images/jazz1.jpg" alt="Jazz performance" />
+                        <img src="images/jazz2.jpg" alt="Audience at Jazz Fest" />
+                    </div>
+                </article>
+
+                <article class="topics" data-event id="litfest-event">
+                    <div class="topicstext">
+                        <h2>Manchester Literature Festival</h2>
+                        <p><strong>Date:</strong> <time datetime="2025-10-10">10 October</time> – <time datetime="2025-10-26">26 October</time></p>
+                        <p><strong>Venue:</strong> Various Libraries &amp; Theatres</p>
+                        <p>A week-long celebration of words with readings, workshops, and author Q&amp;A sessions.</p>
+                    </div>
+                    <div class="gallery">
+                        <img src="images/litfest1.jpg" alt="Writers" />
+                        <img src="images/litfest2.jpg" alt="Pamphlets" />
+                    </div>
+                </article>
+
+                <article class="topics" data-event id="christmas-event">
+                    <div class="topicstext">
+                        <h2>Manchester Christmas Markets</h2>
+                        <p><strong>Date:</strong> <time datetime="2025-11-08">8 November</time> – <time datetime="2025-12-22">22 December</time></p>
+                        <p><strong>Venue:</strong> Albert Square, St Ann’s Square &amp; King Street</p>
+                        <p>Experience Europe’s largest Christmas market with festive stalls, mulled wine, artisan crafts, and seasonal treats.</p>
+                    </div>
+                    <div class="gallery">
+                        <img src="images/christmas1.jpg" alt="Festive Lights" />
+                        <img src="images/christmas2.jpg" alt="Christmas Market" />
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Image Viewer Modal -->
+        <div id="image-viewer">
+            <span id="close-viewer">&times;</span>
+            <img id="full-image" src="" alt="Expanded image">
         </div>
-        <div class="box-imgs">
-          <img src="images/mif1.jpg" alt="Performance at MIF" />
-          <img src="images/mif2.jpg" alt="Crowd at MIF" />
-        </div>
-      </div>
 
-      <!-- Event 2 -->
-      <div id="event-2" class="topics">
-        <div class="topicstext">
-          <h2>Parklife Festival</h2>
-          <p><strong>Date:</strong> 28 June – 29 June 2025</p>
-          <p><strong>Venue:</strong> Heaton Park</p>
-          <p>A weekend of live music and street food, featuring top DJs and bands in a beautiful park setting.</p>
-        </div>
-        <div class="box-imgs">
-          <img src="images/parklife1.jpg" alt="Crowd at Parklife" />
-          <img src="images/parklife2.jpg" alt="Stage at Parklife" />
-        </div>
-      </div>
+        <footer>
+            <h4>Contact information</h4>
+            <p>email: supportinfo@gmail.com</p>
+            <p>phone: +44 7472 345678</p>
+        </footer>
 
-      <!-- Event 3 -->
-      <div id="event-3" class="topics">
-        <div class="topicstext">
-          <h2>Manchester Jazz Festival</h2>
-          <p><strong>Date:</strong> 26 June – 5 July 2025</p>
-          <p><strong>Venue:</strong> Various Venues including Band on the Wall &amp; RNCM</p>
-          <p>A celebration of jazz in all its forms, featuring local and international talent across intimate clubs and grand halls.</p>
-        </div>
-        <div class="box-imgs">
-          <img src="images/jazz1.jpg" alt="Jazz performance" />
-          <img src="images/jazz2.jpg" alt="Audience at Jazz Fest" />
-        </div>
-      </div>
-
-      <!-- Event 5 -->
-      <div id="event-5" class="topics">
-        <div class="topicstext">
-          <h2>Manchester Christmas Markets</h2>
-          <p><strong>Date:</strong> 1 December – 22 December 2025</p>
-          <p><strong>Venue:</strong> Albert Square, St Ann’s Square &amp; King Street</p>
-          <p>Experience Europe’s largest Christmas market with festive stalls, mulled wine, artisan crafts, and seasonal treats.</p>
-        </div>
-        <div class="box-imgs">
-          <img src="images/christmas1.jpg" alt="Christmas Market" />
-          <img src="images/christmas2.jpg" alt="Festive Lights" />
-        </div>
-      </div>
-
-    </section>
-
-    <!-- Image Viewer Modal -->
-    <div id="image-viewer">
-      <span id="close-viewer">&times;</span>
-      <img id="full-image" src="" alt="Expanded image">
-    </div>
-
-    <footer>
-      <h4>Contact information</h4>
-      <p>email: supportinfo@gmail.com</p>
-      <p>phone: +44 7472 345678</p>
-    </footer>
-
-    <script src="code.js"></script>
-  </body>
+        <script src="code.js"></script>
+    </body>
 </html>

@@ -220,17 +220,20 @@ function startOverlay(pet, link) {
         if (t2 < 1) requestAnimationFrame(animateOverlay);
         else {
             const rect = pet.getBoundingClientRect();
-            sessionStorage.setItem("beePlaces", JSON.stringify({ left: Math.round(rect.left * 100), top: Math.round(rect.top * 100) }))
             if (link.id == "places"){
+                sessionStorage.setItem("beePlaces", JSON.stringify({ left: Math.round(rect.left * 100), top: Math.round(rect.top * 100) }))
                 window.location.href = "places.html?guide=1";
             }
             if (link.id == "events"){
+                sessionStorage.setItem("beeEvents", JSON.stringify({ left: Math.round(rect.left * 100), top: Math.round(rect.top * 100) }))
                 window.location.href = "events.html?guide=2";
             }
             if (link.id == "info"){
+                sessionStorage.setItem("beeInfo", JSON.stringify({ left: Math.round(rect.left * 100), top: Math.round(rect.top * 100) }))
                 window.location.href = "info.html?guide=3";
             }
             if (link.id == "contact"){
+                sessionStorage.setItem("beeContact", JSON.stringify({ left: Math.round(rect.left * 100), top: Math.round(rect.top * 100) }))
                 window.location.href = "contact.html?guide=4";
             }
         }

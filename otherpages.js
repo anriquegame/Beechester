@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    if (guide === '1') {
+    if (guide) {
         document.getElementById("anim-logo").src = "images/lightgraylogobee.png";
         document.getElementById("anim-logo").id = "grayBee";
         blank.style.opacity = 1;
@@ -59,9 +59,20 @@ window.addEventListener('DOMContentLoaded', async () => {
         Object.assign(pet.style, {
         transform: finalRotation
         });
-
-        onAnimationEnd(pet, texts2, targets2, "events")
-    } else {
+        if (guide == "1"){
+            onAnimationEnd(pet, texts2, targets2, "events")
+        }
+        else if(guide == "2"){
+            onAnimationEnd(pet, texts3, targets3, "info")
+        }
+        else if(guide == "3"){
+            onAnimationEnd(pet, texts2, targets2, "contact")
+        }
+        else {
+            console.warn('restart the tour', e);
+        }
+    }
+    else {
         blank.remove();
     }
 });
@@ -131,3 +142,49 @@ const targets2 = [
 "hotel-map",
 "city-map"
 ];
+
+
+
+// petbee dialogues for the Events page
+const texts3 = [
+    // 0 – Introduction 
+    [
+        "Hey, Ready to buzz through manchester's best events?",
+        "Keep scrolling to uncover festivals, markets and more surprises!"
+    ],
+    // 1 – Manchester International Festival
+    [
+        "First stop: Manchester International Festival!",
+        "From 10-20 July, dive into world premieres of theatre, music and art—made just for you."
+    ],
+    // 2 – Parklife Festival
+    [
+        "Next up: Parklife Festival at Heaton Park.",
+        "On 14-15 June, dance under the open sky to top DJs, munch on street food and share the vibe."
+    ],
+    // 3 – Manchester Jazz Festival
+    [
+        "Feel the groove at Manchester Jazz Festival.",
+        "16-25 May, intimate clubs, grand halls and plenty of improv to make you move."
+    ],
+    // 4 – Manchester Literature Festival
+    [
+        "Get inspired at Manchester Literature Festival!",
+        "10-26 October, join readings, workshops and author chats—perfect for book lovers of all ages."
+    ],
+    // 5 – Manchester Christmas Markets
+    [
+        "Experience festive magic at the Manchester Christmas Markets.",
+        "8 Nov-22 Dec, explore wooden chalets, sip mulled wine and hunt for unique gifts."
+    ],
+];
+
+const targets3 = [
+    "events-intro",    // introduction section
+    "mif-event",       // Manchester International Festival
+    "parklife-event",  // Parklife Festival
+    "jazzfest-event",  // Manchester Jazz Festival
+    "litfest-event",   // Manchester Literature Festival
+    "christmas-event" // Manchester Christmas Markets
+];
+
