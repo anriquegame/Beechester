@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+        <meta charset="utf-8">
+        <title>Beechester - Info</title>
+        <link rel="icon" href="images/logobee.png">
+        <script> // speed loader for petbee
+            const urlParams = new URLSearchParams(window.location.search);
+            const guide = urlParams.get('guide');
+            if (guide) {
+                (function(){
+                    const raw = sessionStorage.getItem('beeInfo');
+                    if (!raw) return;
+                    try {
+                        const { left, top } = JSON.parse(raw);
+                        const style = document.createElement('style');
+                        style.textContent = `
+                        #petbee {
+                            position: fixed !important;
+                            left:   ${left/100}px;
+                            top:    ${top/100}px;
+                            display: block !important;
+                        }
+                        `;
+                        document.head.appendChild(style);
+                    } catch(e) {
+                        console.warn('restart the tour', e);
+                    }
+                })();
+            }
+        </script>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="otherpages.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="otherpages.js"></script>
+    </head>
+    <body>
+        <header>
+            <a href="index.html"><img src="images/logobee.png" alt="Logo image of bee" width="50px" id="anim-logo"/></a>
+            <nav>
+                <a href="index.html" id="home">Home</a>
+                <a href="places.html" id="places">Places</a>
+                <a href="events.html" id="events">Events</a>
+                <a href="info.html" id="info">Info</a>
+                <a href="contact.html" id="contact">Contact</a>
+            </nav>
+        </header>
+
+        <section id="main">
+            <img src="images/logobee.png" id="petbee" style="display: none;"/>
+            <div id="blank"></div>
+
+            <div id="info-intro" class="topicstext">
+                <h1>Practical Information</h1>
+                <p>Your guide to key facilities, transport, accommodation, and airport details in Manchester.</p>
+            </div>
+
+            <div id="sporting-facilities" class="topics">
+                <div class="topicstext">
+                    <h2>Sporting Facilities, Buildings of Distinction & Landmarks</h2>
+                    <article>
+                        <h3>Old Trafford</h3>
+                        <p>Home of Manchester United FC, seating 74,310. Stadium tours available daily. See museum and trophy room.</p>
+                    </article>
+                    <article>
+                        <h3>Manchester Aquatics Centre</h3>
+                        <p>Olympic-standard pool complex at the University of Manchester, featuring 50m pools and diving boards.</p>
+                    </article>
+                    <article>
+                        <h3>Manchester Town Hall</h3>
+                        <p>Iconic Gothic Revival building at Albert Square. Free guided architecture tours on weekends.</p>
+                    </article>
+                    <article>
+                        <h3>Manchester Cathedral</h3>
+                        <p>Historic medieval cathedral with striking nave and stained glass. Open daily for visitors.</p>
+                    </article>
+                </div>
+                <div id="box-imgs">
+                    <img src="images\facilities1.jpg" alt="Old Trafford image"/>
+                    <img src="images\facilities2.jpg" alt="Manchester Aquatics Centre image"/>
+                    <img src="images\facilities3.jpg" alt="Manchester Town Hall image"/>
+                    <img src="images\facilities4.jpg" alt="Manchester Cathedral image"/>
+                </div>
+            </div>
+
+            <div id="transport-airport" class="topics">
+                <h2>Public Transport & Airport Information</h2>
+                <div class="topicstext">
+                    <ul>
+                        <li><strong>Metrolink:</strong> Light rail network connecting city centre to suburbs, Salford Quays, and direct airport tram. Purchase tickets via app or machines.</li>
+                        <li><strong>Buses:</strong> Extensive bus services across Greater Manchester. Use the Bee Network Go app for real-time schedules.</li>
+                        <li><strong>Trains:</strong> Stations at Piccadilly, Victoria, Oxford Road link Manchester to UK cities; Airport train to Piccadilly (~20 mins).</li>
+                        <li><strong>Coaches:</strong> National Express depart from Chorlton Street Coach Station; airport coaches outside terminals.</li>
+                        <li><strong>Taxi:</strong> Licensed ranks at all airport terminals; journey to city centre ~30 mins.</li>
+                    </ul>
+                </div>
+                <div id="box-imgs">
+                    <img src="images/airport.png" alt="Airport Terminal"/>
+                    <img src="images/transport1.jpg" alt="Metrolink"/>
+                    <img src="images/transport2.jpg" alt="Buses"/>
+                    <img src="images/transport3.jpg" alt="Taxis"/>
+                </div>
+            </div>
+
+            <div id="hotels" class="topics">
+                <div class="topicstext">
+                    <h2>Hotel Recommendations</h2>
+                    <article>
+                        <h3>Hotel Gotham</h3>
+                        <p>Luxury 5-star boutique hotel in city centre. Rated 4.8/5 for style and service.</p>
+                        <a href="https://www.booking.com/Share-KjzEUL0" target="_blank" class="button">Book Now</a>
+                    </article>
+                    <article>
+                        <h3>Edwardian Manchester</h3>
+                        <p>5-star hotel adjacent to the Free Trade Hall. Rated 4.6/5 for comfort and location.</p>
+                        <a href="https://www.booking.com/Share-LmpfKeP" target="_blank" class="button">Book Now</a>
+                    </article>
+                    <article>
+                        <h3>Holiday Inn Manchester City Centre</h3>
+                        <p>Reliable 3-star option near Piccadilly. Rated 4.1/5 for value and convenience.</p>
+                        <a href="https://www.booking.com/Share-t5DYAj" target="_blank" class="button">Book Now</a>
+                    </article>
+                </div>
+                <div class="gallery">
+                    <img src="images/hotel1.jpg" alt="Hotel Gotham image"/>
+                    <img src="images/hotel2.jpg" alt="Edwardian Manchester image"/>
+                    <img src="images/hotel3.jpg" alt="Holiday Inn Manchester City Centre image"/>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Viewer Modal -->
+        <div id="image-viewer">
+            <span id="close-viewer">&times;</span>
+            <img id="full-image" src="" alt="Expanded image">
+        </div>
+
+        <footer>
+            <h4>Contact Information</h4>
+            <p>Email: supportinfo@gmail.com</p>
+            <p>Phone: +44 7472 345678</p>
+        </footer>
+
+        <script src="code.js"></script>
+    </body>
+</html>

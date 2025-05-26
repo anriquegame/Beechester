@@ -139,9 +139,14 @@ function setupBubbleNavigation(floater, bubble, textsParam, targetsParam, linkPa
                 document.getElementById(targetsParam[section])?.scrollIntoView({ behavior: "smooth" });
                 textEl.textContent = textsParam[section][0];
             } else {
-                textEl.textContent = `Let's continue to the ${linkPage} page!`;
-                nextBtn.textContent = `Go to ${linkPage}`;
-
+                if (linkPage == "home"){
+                    textEl.textContent = `Our tour ends here, I hope you enjoyed it! Now, finally, I will be taking you back to the home page.`;
+                    nextBtn.textContent = `Back to ${linkPage}`;
+                }
+                else{
+                    textEl.textContent = `Let's continue to the ${linkPage} page!`;
+                    nextBtn.textContent = `Go to ${linkPage}`;
+                }
                 nextBtn.replaceWith(nextBtn.cloneNode(true));
                 const finalBtn = bubble.querySelector("#nextButton");
                 finalBtn.addEventListener("click", () => endTour(floater, linkPage));
@@ -236,6 +241,9 @@ function startOverlay(pet, link) {
                 sessionStorage.setItem("beeContact", JSON.stringify({ left: Math.round(rect.left * 100), top: Math.round(rect.top * 100) }))
                 window.location.href = "contact.html?guide=4";
             }
+            if (link.id == "home"){
+                window.location.href = "index.html";
+            }
         }
     })(performance.now());
 }
@@ -288,4 +296,16 @@ document.getElementById('image-viewer').addEventListener('click', (e) => {
     if (e.target.id === 'image-viewer') {
     document.getElementById('image-viewer').style.display = 'none';
     }
+});
+
+// contact page
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    document.getElementById('thankYouMessage').textContent = `Dear ${name}, thank you for your message! We will be in touch soon.`;
+    document.getElementById('thankYouPopup').style.display = 'flex';
+});
+document.getElementById('closePopup').addEventListener('click', function() {
+    document.getElementById('thankYouPopup').style.display = 'none';
+    document.getElementById('contactForm').reset();
 });

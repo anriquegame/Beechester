@@ -66,7 +66,10 @@ window.addEventListener('DOMContentLoaded', async () => {
             onAnimationEnd(pet, texts3, targets3, "info")
         }
         else if(guide == "3"){
-            onAnimationEnd(pet, texts2, targets2, "contact")
+            onAnimationEnd(pet, texts4, targets4, "contact")
+        }
+        else if(guide == "4"){
+            onAnimationEnd(pet, texts5, targets5, "home")
         }
         else {
             console.warn('restart the tour', e);
@@ -77,6 +80,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
+// dialogues
 const texts2 = [
 // 0 – Introduction
 [
@@ -85,7 +89,7 @@ const texts2 = [
 ],
 // 1 – Heaton Park
 [
-    "First up: Heaton Park – one of Europe's largest municipal parks.",
+    "First up: Heaton Park - one of Europe's largest municipal parks.",
     "Enjoy landscaped gardens, a historic hall, and even tram rides."
 ],
 // 2 – Northern Quarter
@@ -110,7 +114,7 @@ const texts2 = [
 ],
 // 6 – Stadiums
 [
-    "Calling all football fans – check out Old Trafford.",
+    "Calling all football fans - check out Old Trafford.",
     "Book a stadium tour to dive into Manchester's sporting history."
 ],
 // 7 – Parks roundup
@@ -143,9 +147,6 @@ const targets2 = [
 "city-map"
 ];
 
-
-
-// petbee dialogues for the Events page
 const texts3 = [
     // 0 – Introduction 
     [
@@ -180,11 +181,75 @@ const texts3 = [
 ];
 
 const targets3 = [
-    "events-intro",    // introduction section
-    "mif-event",       // Manchester International Festival
-    "parklife-event",  // Parklife Festival
-    "jazzfest-event",  // Manchester Jazz Festival
-    "litfest-event",   // Manchester Literature Festival
-    "christmas-event" // Manchester Christmas Markets
+    "events-intro",
+    "mif-event",
+    "parklife-event",
+    "jazzfest-event",
+    "litfest-event",
+    "christmas-event"
 ];
 
+
+const texts4 = [
+    // 0 – Introduction
+    [
+        "Hey there! Here is the Manchester's must-know info.",
+        "Scroll down for key facilities, transport tips, and top hotel picks!"
+    ],
+    // 1 – Old Trafford
+    [
+        "First stop: Old Trafford—the Theatre of Dreams!",
+        "Check out stadium tours, the museum and the legendary trophy room.",
+        "Next is the Manchester Aquatics Centre!",
+        "Dive into Olympic-standard pools and show off your best dive off the boards.",
+        "Over at Albert Square stands the stunning Town Hall.",
+        "Join a free weekend tour and marvel at its Gothic Revival splendor.",
+        "Step inside Manchester Cathedral's medieval nave.",
+        "Admire the stained glass and enjoy a moment of calm—open daily!"
+    ],
+    // 2 – Public Transport & Airport
+    [
+        "Getting around? Metrolink trams, buses, trains and coaches have you covered.",
+        "Tip: hop on the direct airport tram—Piccadilly to terminals in just 20 minutes!"
+    ],
+    // 3 – Hotel Recommendations
+    [
+        "Time to rest your wings? Check these hotel gems:",
+        "From the boutique luxury of Gotham to comfy value at Holiday Inn."
+    ]
+];
+
+const targets4 = [
+    "info-intro",
+    "sporting-facilities",
+    "transport-airport",
+    "hotels" 
+];
+
+
+// petbee dialogues for the Contact page
+const texts5 = [
+    // 0 – Introduction / Contact Form
+    [
+        "You’ve reached the final stop: let’s get in touch!",
+        "Fill out the form below with your name, email and message, I'll buzz right back to you."
+    ],
+    // 1 – Stay Connected
+    [
+        "Want more Manchester buzz? Follow us on social media!",
+        "Click Facebook, Twitter or Instagram and don't forget you can always email us directly."
+    ],
+    // 2 – Key Organizations and end
+    [
+        "Need official info? Here are some key resources:",
+        "Manchester City Council, GMP Police, TfGM and Visit Manchester are all just a click away.",
+        "That's a wrap on our Beechester tour—thanks for buzzing with me!",
+        "Safe travels, and come back soon for more city adventures."
+    ]
+];
+
+const targets5 = [
+    "contact-form",
+    "stay-connected",
+    "key-orgs"
+];

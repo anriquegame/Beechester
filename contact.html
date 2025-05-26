@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+        <meta charset="utf-8">
+        <title>Beechester - Contact</title>
+        <link rel="icon" href="images/logobee.png">
+        <script> // speed loader for petbee
+            const urlParams = new URLSearchParams(window.location.search);
+            const guide = urlParams.get('guide');
+            if (guide) {
+                (function(){
+                    const raw = sessionStorage.getItem('beeContact');
+                    if (!raw) return;
+                    try {
+                        const { left, top } = JSON.parse(raw);
+                        const style = document.createElement('style');
+                        style.textContent = `
+                        #petbee {
+                            position: fixed !important;
+                            left:   ${left/100}px;
+                            top:    ${top/100}px;
+                            display: block !important;
+                        }
+                        `;
+                        document.head.appendChild(style);
+                    } catch(e) {
+                        console.warn('restart the tour', e);
+                    }
+                })();
+            }
+        </script>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="otherpages.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="otherpages.js"></script>
+    </head>
+    <body>
+        <header>
+            <a href="index.html"><img src="images/logobee.png" alt="Logo image of bee" width="50px" id="anim-logo"/></a>
+            <nav>
+                <a href="index.html" id="home">Home</a>
+                <a href="places.html" id="places">Places</a>
+                <a href="events.html" id="events">Events</a>
+                <a href="info.html" id="info">Info</a>
+                <a href="contact.html" id="contact">Contact</a>
+            </nav>
+        </header>
+
+        <section id="main">
+            <img src="images/logobee.png" id="petbee" style="display: none;"/>
+            <div id="blank"></div>
+            <div class="topics" id="contact-form">
+                <div class="topicstext">
+                    <h1>Contact Us</h1>
+                    <p>Have questions or feedback? Fill out the form below and we'll get back to you shortly.</p>
+                </div>
+                <form id="contactForm" class="topicstext">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required />
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject" placeholder="Subject" required />
+
+                    <br/>
+
+                    <label for="message">Message:</label>
+                    <br/>
+                    <textarea id="message" name="message" rows="6" placeholder="Your message here..." required></textarea>
+                    <br/>
+                    <button type="submit" class="button">Submit</button>
+                </form>
+            </div>
+
+            <br/>
+
+            <div class="topics" id="stay-connected">
+                <div class="topicstext">
+                    <h2>Stay Connected</h2>
+                    <p>Follow us on social media or drop us an email directly:</p>
+                    <div class="links">
+                        <a href="https://www.facebook.com/visitmanchester" target="_blank" class="button">Facebook</a>
+                        <a href="https://x.com/visit_mcr" target="_blank" class="button">Twitter</a>
+                        <a href="https://www.instagram.com/visitmanchester" target="_blank" class="button">Instagram</a>
+                        <a href="mailto:supportinfo@gmail.com" class="button">Email Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+
+            <div class="topics" id="key-orgs">
+                <div class="topicstext">
+                    <h2>Key Organizations</h2>
+                    <p>For official resources and services, visit:</p>
+                    <div class="links2">
+                        <a href="https://www.manchester.gov.uk" target="_blank" class="button">Manchester City Council</a>
+                        <a href="https://www.gmp.police.uk" target="_blank" class="button">Greater Manchester Police (GMP)</a>
+                        <a href="https://tfgm.com" target="_blank" class="button">Transport for Greater Manchester (TfGM)</a>
+                        <a href="https://www.visitmanchester.com" target="_blank" class="button">Visit Manchester</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Viewer Modal -->
+        <div id="image-viewer">
+            <span id="close-viewer">&times;</span>
+            <img id="full-image" src="" alt="Expanded image">
+        </div>
+
+        <!-- Thank You Popup -->
+        <div id="thankYouPopup" class="popup-overlay" style="display:none;">
+            <div class="popup-content">
+                <span id="closePopup" class="popup-close">&times;</span>
+                <h2>Thank You!</h2>
+                <p id="thankYouMessage"></p>
+            </div>
+        </div>
+
+        <footer>
+            <h4>Contact Information</h4>
+            <p>Email: supportinfo@gmail.com</p>
+            <p>Phone: +44 7472 345678</p>
+        </footer>
+        <script src="code.js"></script>
+    </body>
+</html>
