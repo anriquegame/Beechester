@@ -72,6 +72,10 @@ textarea {
     align-items: center;
 }
 
+#transport-list{
+    text-align: left;
+}
+
 
 .popup-overlay {
     position: fixed;
